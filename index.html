@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d31">
+  <meta name="description" content="在冬日幸運所轉出你的聖誕好運。">
+  <title>冬日幸運所 | 聖誕拉霸</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --pine: #173d31;
+      --pine-light: #285d49;
+      --cream: #fff8e9;
+      --paper: #f3e8d1;
+      --red: #c64235;
+      --gold: #e5b64c;
+      --ink: #20352d;
+      --muted: #78877b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Noto Sans TC", sans-serif;
+      background-color: #e8eee1;
+      background-image:
+        linear-gradient(90deg, transparent 49%, rgba(198, 66, 53, .045) 50%, transparent 51%),
+        linear-gradient(transparent 49%, rgba(23, 61, 49, .045) 50%, transparent 51%);
+      background-size: 34px 34px;
+    }
+
+    button { font: inherit; }
+
+    .topbar {
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px clamp(18px, 5vw, 72px);
+      color: var(--cream);
+      background: var(--pine);
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .brand, .season {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
+
+    .brand-mark { color: var(--gold); font-size: 20px; }
+    .season { color: #e4d7b7; font-size: 11px; }
+
+    main {
+      width: min(100% - 32px, 720px);
+      margin: 0 auto;
+      padding: 34px 0 42px;
+    }
+
+    .intro { margin-bottom: 22px; text-align: center; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--pine);
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: clamp(29px, 7vw, 43px);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: #65796c;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .machine {
+      position: relative;
+      padding: 26px clamp(16px, 5vw, 42px) 25px;
+      overflow: hidden;
+      background: var(--pine);
+      border: 5px solid #d5a744;
+      border-radius: 12px;
+      box-shadow: 0 9px 0 #9c7534, 0 18px 34px rgba(27, 55, 39, .2);
+    }
+
+    .machine::before, .machine::after {
+      position: absolute;
+      z-index: 0;
+      top: -30px;
+      width: 110px;
+      height: 110px;
+      border: 1px solid rgba(255, 248, 233, .09);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .machine::before { left: -58px; }
+    .machine::after { right: -58px; }
+
+    .garland {
+      position: absolute;
+      top: 0;
+      right: 12%;
+      left: 12%;
+      height: 18px;
+      border-bottom: 2px solid #568061;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .bulbs {
+      position: absolute;
+      top: 14px;
+      right: 16%;
+      left: 16%;
+      display: flex;
+      justify-content: space-between;
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    .bulbs span:nth-child(2n) { color: #e9785c; }
+    .machine-heading {
+      position: relative;
+      margin: 3px 0 18px;
+      color: #f5d47e;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    .reels {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(8px, 2.5vw, 17px);
+      padding: 12px;
+      background: #d7bd81;
+      border: 3px solid #f3d37e;
+      border-radius: 8px;
+      box-shadow: inset 0 3px 8px rgba(46, 38, 17, .24);
+    }
+
+    .reel {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1 / 1;
+      min-width: 0;
+      overflow: hidden;
+      background: var(--cream);
+      border: 2px solid #eee0be;
+      border-radius: 5px;
+      box-shadow: inset 0 2px 6px rgba(50, 42, 25, .12);
+      font-size: clamp(42px, 10vw, 76px);
+      line-height: 1;
+    }
+
+    .reel.spinning { animation: reel-shake .12s linear infinite alternate; }
+
+    @keyframes reel-shake {
+      from { transform: translateY(-3px); }
+      to { transform: translateY(3px); }
+    }
+
+    .paytable {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 16px;
+      margin: 15px 0 0;
+      color: #e9e4d2;
+      font-size: 11px;
+    }
+
+    .paytable span { white-space: nowrap; }
+    .paytable strong { color: #f4ce69; }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .balance { color: var(--cream); }
+    .balance-label {
+      display: block;
+      margin-bottom: 5px;
+      color: #bdc9b9;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+
+    .balance-value {
+      font-family: Georgia, serif;
+      font-size: clamp(20px, 5vw, 27px);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bet-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cream);
+    }
+
+    .bet-info { min-width: 46px; text-align: center; }
+    .bet-label {
+      display: block;
+      margin-bottom: 4px;
+      color: #bdc9b9;
+      font-size: 9px;
+      letter-spacing: 1px;
+    }
+
+    .bet-value { font-size: 18px; font-weight: 700; }
+
+    .icon-button {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      color: var(--pine);
+      background: #f2d47f;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .icon-button:hover:not(:disabled) { background: #ffe7a0; }
+    .icon-button:disabled { cursor: not-allowed; opacity: .4; }
+
+    .spin-button {
+      min-width: 148px;
+      min-height: 54px;
+      padding: 10px 24px;
+      color: #fff8e9;
+      background: var(--red);
+      border: 2px solid #f2c56b;
+      border-radius: 6px;
+      box-shadow: 0 4px 0 #842d25;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      transition: transform .12s, background .12s;
+    }
+
+    .spin-button:hover:not(:disabled) { background: #da5142; transform: translateY(-1px); }
+    .spin-button:active:not(:disabled) { box-shadow: 0 1px 0 #842d25; transform: translateY(3px); }
+    .spin-button:disabled { cursor: wait; opacity: .7; }
+
+    .status {
+      min-height: 27px;
+      margin: 18px 0 0;
+      color: #f5d47e;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .status.win { color: #ffe49a; animation: win-pop .45s ease-out; }
+
+    @keyframes win-pop {
+      50% { transform: scale(1.08); }
+    }
+
+    .footer-note {
+      margin: 27px 0 0;
+      color: #768778;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      main { padding-top: 25px; }
+      .season { font-size: 9px; letter-spacing: .8px; }
+      .machine { padding: 25px 14px 18px; }
+      .dashboard { grid-template-columns: 1fr 1fr; row-gap: 18px; }
+      .balance { grid-column: 1; grid-row: 1; }
+      .bet-control { grid-column: 2; grid-row: 1; justify-self: end; }
+      .spin-button { grid-column: 1 / -1; grid-row: 2; width: 100%; }
+      .paytable { gap: 7px 12px; font-size: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span><span>冬日幸運所</span></div>
+    <div class="season"><span aria-hidden="true">❄</span> HOLIDAY ARCADE <span aria-hidden="true">❄</span></div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">A LITTLE CHRISTMAS MAGIC</p>
+      <h1 id="page-title">聖誕幸運拉霸</h1>
+      <p class="subtitle">轉出一點冬日好運</p>
+    </section>
+
+    <section class="machine" aria-label="聖誕拉霸機">
+      <div class="garland" aria-hidden="true"></div>
+      <div class="bulbs" aria-hidden="true"><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span></div>
+      <p class="machine-heading">✧ SEASON'S SPIN ✧</p>
+
+      <div class="reels" aria-label="拉霸結果">
+        <div class="reel" aria-label="第一個轉輪">🎄</div>
+        <div class="reel" aria-label="第二個轉輪">🎁</div>
+        <div class="reel" aria-label="第三個轉輪">⭐</div>
+      </div>
+
+      <div class="paytable" aria-label="派彩表">
+        <span>🎄 <strong>10 倍</strong></span>
+        <span>🎁 <strong>6 倍</strong></span>
+        <span>⭐ <strong>5 倍</strong></span>
+        <span>🔔 <strong>4 倍</strong></span>
+        <span>🍒 <strong>3 倍</strong></span>
+        <span>❄️ <strong>2 倍</strong></span>
+      </div>
+
+      <div class="dashboard">
+        <div class="balance" aria-live="polite">
+          <span class="balance-label">幸運籌碼</span>
+          <span class="balance-value" id="balance">100</span>
+        </div>
+
+        <div class="bet-control" aria-label="下注金額">
+          <button class="icon-button" id="bet-down" type="button" aria-label="減少下注" title="減少下注">−</button>
+          <div class="bet-info"><span class="bet-label">單次下注</span><span class="bet-value" id="bet">5</span></div>
+          <button class="icon-button" id="bet-up" type="button" aria-label="增加下注" title="增加下注">+</button>
+        </div>
+
+        <button class="spin-button" id="spin" type="button">✦ 開始旋轉 ✦</button>
+      </div>
+
+      <p class="status" id="status" role="status" aria-live="polite">祝你有個閃閃發光的聖誕夜</p>
+    </section>
+
+    <p class="footer-note">冬日限定 · 好運正在路上</p>
+  </main>
+
+  <script>
+    const symbols = ["🎄", "🎁", "⭐", "🔔", "🍒", "❄️"];
+    const payouts = { "🎄": 10, "🎁": 6, "⭐": 5, "🔔": 4, "🍒": 3, "❄️": 2 };
+    const reels = [...document.querySelectorAll(".reel")];
+    const balanceDisplay = document.querySelector("#balance");
+    const betDisplay = document.querySelector("#bet");
+    const statusDisplay = document.querySelector("#status");
+    const spinButton = document.querySelector("#spin");
+    const betDown = document.querySelector("#bet-down");
+    const betUp = document.querySelector("#bet-up");
+
+    let balance = 100;
+    let bet = 5;
+    let spinning = false;
+
+    function updateControls() {
+      balanceDisplay.textContent = balance;
+      betDisplay.textContent = bet;
+      betDown.disabled = spinning || bet <= 1;
+      betUp.disabled = spinning || bet >= 10 || bet >= balance;
+      spinButton.disabled = spinning || balance < bet;
+    }
+
+    betDown.addEventListener("click", () => {
+      if (!spinning) bet = Math.max(1, bet - 1);
+      updateControls();
+    });
+
+    betUp.addEventListener("click", () => {
+      if (!spinning) bet = Math.min(10, balance, bet + 1);
+      updateControls();
+    });
+
+    spinButton.addEventListener("click", () => {
+      if (spinning || balance < bet) return;
+
+      spinning = true;
+      balance -= bet;
+      statusDisplay.classList.remove("win");
+      statusDisplay.textContent = "好運轉動中…";
+      updateControls();
+
+      const result = reels.map(() => symbols[Math.floor(Math.random() * symbols.length)]);
+      reels.forEach((reel, index) => {
+        reel.classList.add("spinning");
+        const timer = window.setInterval(() => {
+          reel.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        }, 75);
+
+        window.setTimeout(() => {
+          window.clearInterval(timer);
+          reel.textContent = result[index];
+          reel.classList.remove("spinning");
+
+          if (index === reels.length - 1) {
+            const matching = result[0] === result[1] && result[1] === result[2];
+            const pair = result[0] === result[1] || result[0] === result[2] || result[1] === result[2];
+            const winnings = matching ? bet * payouts[result[0]] : pair ? bet : 0;
+            balance += winnings;
+            spinning = false;
+            statusDisplay.textContent = winnings > 0
+              ? `🎉 恭喜！獲得 ${winnings} 枚籌碼！`
+              : "再試一次，聖誕好運等著你。";
+            statusDisplay.classList.toggle("win", winnings > 0);
+            updateControls();
+          }
+        }, 850 + index * 450);
+      });
+    });
+
+    updateControls();
+  </script>
+</body>
+</html>
